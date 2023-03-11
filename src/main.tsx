@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import {ChakraProvider} from '@chakra-ui/react';
 
-const root = document.getElementById('root')!;
+const client = new ApolloClient({
+  uri: 'https://api.psychonautwiki.org/',
+  cache: new InMemoryCache(),
+});
 
-ReactDOM.createRoot(root).render(
+const root = ReactDOM.createRoot(document.getElementById('root')!);
+
+root.render(
   <React.StrictMode>
-    <ChakraProvider>
-      <App />
-    </ChakraProvider>
+    <ApolloProvider client={client}>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
+    </ApolloProvider>
   </React.StrictMode>,
 );
