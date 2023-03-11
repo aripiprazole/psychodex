@@ -23,3 +23,5 @@ __generated__
 *.njsproj
 *.sln
 *.sw?
+
+.env
